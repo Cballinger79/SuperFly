@@ -5,6 +5,7 @@ PVector vectors0[] = new PVector[10];//Array List of PVectors located at bottom 
 float randseed[] = new float[10];
 boolean runGame;
 PImage gOver;
+PImage loser;
 float initX, initX2;
 float punchL, punchR;
 float sRot; //START OF SUPERMAN VARIABLES
@@ -27,6 +28,7 @@ int px, py;
 int vx, vy;
 boolean text;
 boolean intro;
+boolean ending;
 int clickCounter;
 
 void setup(){
@@ -34,6 +36,7 @@ void setup(){
   img1 = loadImage("img1.png"); //INTRO CODE
   img2 = loadImage("img2.jpg");
   img5 = loadImage("img5.png");
+  loser = loadImage("hahah.png");
   //image(img5, 0, 0);
   img5.resize(0, 50);
   img1.resize(0, 200);
@@ -48,6 +51,7 @@ void setup(){
   vy = -1;
   text = false;
   intro = true;
+  ending = false;
   clickCounter = 0;
   v = new PVector(10,150);  //Location of superman hitbox
   //size(600,400);
@@ -133,7 +137,10 @@ void draw(){
           runGame = false;
         if(v.y - vectors0[i].y >= 0 && v.x - vectors[i].x >= 0 && v.x - vectors[i].x <= 100)
           runGame = false;
+        
       }
+      if(vectors[9].x < 0)
+          ending = true;
     }
     //v = new PVector(mouseX, mouseY);
     v = new PVector(v.x, v.y + (v.y+100)/100);
@@ -158,11 +165,15 @@ void draw(){
   initX2-=2;
   }
     
-    
+  if(!runGame)
+    image(loser,25,150);
+  
   if(initX == -1000) //RESETS 
     initX = 1000;
   if(initX2 == -1000)
     initX2 = 1000;
+  if(ending)
+    image(loser,100,100);
   
 }
 void mousePressed(){
