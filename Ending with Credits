@@ -1,0 +1,51 @@
+PImage solitude, superman, lois, credits;
+int value = 400;
+int value1 = 400;
+PFont f, d, t;
+int px, py;
+int vx, vy;
+boolean text;
+void setup() {
+  background(0);
+
+  solitude =  loadImage("metropolis.png");
+  superman = loadImage("img1 copy.png");
+  lois = loadImage("lois.png");
+  credits =loadImage("credits.png");
+
+  solitude.loadPixels();
+  superman.loadPixels();
+  lois.loadPixels();
+  credits.loadPixels();
+
+  size(800, 400);
+  f = createFont("TimesNewRoman", 100, true);
+  d = createFont("TimesNewRoman", 400, true);
+}
+
+void draw() {
+  image(solitude, 0, 0);
+  image(superman, 50, 75);
+  image(lois, 450, 115);
+
+  fill(0, 0, 0, 200);
+  rect(0, 345, width, 55);
+  fill(255);
+  textFont(f, 25);
+  text("In the end, Batman was no match for Superman and Superman was able to rescue Lois Lane. True love conquers all. ", value, 380); 
+  value = value -3;
+  if (value <-1700) {
+    image(credits, 0, 0);
+    textFont(d, 140);  
+    text("S U P E R F L Y", value1, 250);
+    t = createFont("TimesNewRoman", 400, true);
+    text = false;
+    if (text == false) {
+      px += vx;
+      py += vy;
+      textFont(d, 25);                  
+      text("Abhishek Kundu" + "  "+ "Cole Ballinger"+ "  "+"Rattil Chowdhury"+ "  "+"Lukas Suess"+ "  "+"Sam Verkruyse", value, 380); 
+      value1 = value1 - 2;
+    }
+  }
+}
